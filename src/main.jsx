@@ -7,7 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './Layouts/Main';
-import Homepage from './Pages/Homepage/Homepage';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Dashboard from './Pages/Dashboard';
+import AuthProvider from './provider/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -16,14 +19,22 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Homepage></Homepage>
+        element:<Dashboard/>
       }
     ]
   },
+  {
+    path:'/login',
+    element:<Login/>
+  },
+  {
+    path:'/register',
+    element:<Register/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider><RouterProvider router={router}></RouterProvider></AuthProvider>
   </React.StrictMode>,
 )
