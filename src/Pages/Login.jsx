@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 const Login = () => {
-  const { googleLogin, signIn } = useAuth();
+  const { googleSignin, signIn } = useAuth();
   const navigate=useNavigate();
   const location=useLocation();
   const from=location?.state?.from?.pathname || '/';
@@ -19,7 +19,7 @@ const Login = () => {
     });
   };
   const handleGoogleLogin = () => {
-    googleLogin()
+    googleSignin()
     .then(data=>{
       console.log(data);
       if(data?.user?.email){
