@@ -16,7 +16,7 @@ const Drawer = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-72 min-h-full bg-orange-700 text-white">
+        <ul className="menu p-4 w-72 min-h-full bg-orange-700 text-white rounded-e-3xl">
           {/* Sidebar content here */}
           <li>
             <a>Sidebar Item 1</a>
