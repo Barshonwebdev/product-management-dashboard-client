@@ -27,10 +27,9 @@ const Register = () => {
         if (data?.user?.email) {
           const userInfo = {
             email: data?.user?.email,
-            name: name,
-            verified: data?.user?.emailVerified,
+            name: name
           };
-          fetch(`https://caffeholic-server.vercel.app/user`, {
+          fetch(`http://localhost:5000/user`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -53,7 +52,7 @@ const Register = () => {
       <div className="hero-content flex-col ">
         <div className="text-center ">
           <h1 className="text-5xl my-2 text-orange-600 font-bold  title-font">
-            Productify{" "}
+            Gym Store{" "}
           </h1>
         </div>
         <div className="card w-72 md:w-96 shadow-2xl bg-base-100">
@@ -113,7 +112,7 @@ const Register = () => {
             </button>
             <Link to="/login" className="mx-auto mt-5">
               <p className=" text-sm font-semibold">
-                Already on productify? Sign in!
+                Already on Gym Store? Sign in!
               </p>
             </Link>
           </form>

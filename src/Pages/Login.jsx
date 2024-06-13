@@ -27,7 +27,7 @@ const Login = () => {
           email:data?.user?.email,
           name:data?.user?.displayName,
         }
-        fetch(`https://caffeholic-server.vercel.app/user`,{
+        fetch(`http://localhost:5000/user`,{
           method:"POST",
           headers: {
             "Content-type":"application/json"
@@ -48,7 +48,7 @@ const Login = () => {
         <div className="hero  ">
           <div className="hero-content flex-col ">
             <div className="text-center  px-5 ">
-              <h1 className="text-5xl text-orange-600 my-3 font-bold title-font">Productify</h1>
+              <h1 className="text-5xl text-orange-600 my-3 font-bold title-font">Gym Store</h1>
              
             </div>
             <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
@@ -95,14 +95,14 @@ const Login = () => {
                   </button>
                 
                   <small className="text-center">
-                    By continuing, you agree to Productify&apos;s Terms of
+                    By continuing, you agree to Gym Store&apos;s Terms of
                     Service; and acknowledge you&apos;ve read our Privacy
                     Policy.
                   </small>
                   <hr className="w-36 mx-auto" />
                   <Link to="/register" className="mx-auto">
                     <p className=" text-sm font-semibold">
-                      Not yet on Productify? Sign up!
+                      Not yet on Gym Store? Sign up!
                     </p>
                   </Link>
                 </div>
