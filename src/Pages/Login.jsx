@@ -1,18 +1,20 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
+
 const Login = () => {
-  const { googleSignin, signIn } = useAuth();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const { googleSignin, signinUser } = useAuth();
   const navigate=useNavigate();
   const location=useLocation();
   const from=location?.state?.from?.pathname || '/';
-  const handleSignin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const pass = form.password.value;
-    signIn(email, pass).then(() => {
-      e.target.reset();
+  const onSubmit = (data) => {
+    
+    
+    signinUser(data.email, data.password).then(() => {
+      reset();
       
         navigate(from);
       
@@ -52,19 +54,21 @@ const Login = () => {
              
             </div>
             <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
-              <form onSubmit={handleSignin} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h1 className="px-1 text-2xl">Sign in your account!</h1>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                    type="email"
-                    name="email"
+                    type="text"
+                    
                     placeholder="email"
                     className="input input-bordered"
-                    required
+                    {...register('email',{required:true,pattern:/[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]/i})}
                   />
+                  {errors.email?.type === 'required' && <p className="my-1 text-red-600" role="alert">Email is required</p>}
+                  {errors.email?.type === 'pattern' && <p className="my-1 text-red-600" role="alert">Please enter a valid email</p>}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -72,12 +76,13 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
-                    name="password"
-                    placeholder="password"
+                    
+                    placeholder="password (min 6 character)"
                     className="input input-bordered"
-                    required
+                    {...register('password',{required:true, minLength:6})}
                   />
-                  
+                 {errors.password?.type === 'required' && <p className="my-1 text-red-600" role="alert">password is required</p>}
+                 {errors.password?.type === 'minLength' && <p className="my-1 text-red-600" role="alert">password must be minimum 6 character</p>}
                   <div>                    
                   </div>
                 </div>
@@ -93,7 +98,7 @@ const Login = () => {
                     <FcGoogle className="text-xl"></FcGoogle> Continue with
                     Google
                   </button>
-                
+                 
                   <small className="text-center">
                     By continuing, you agree to Gym Store&apos;s Terms of
                     Service; and acknowledge you&apos;ve read our Privacy

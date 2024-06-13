@@ -1,33 +1,25 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
   const { createUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  const [confirm, setConfirm] = useState(true);
-  const handleSignup = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const pass = form.password.value;
-    const confirmPass = form.confirmPassword.value;
-    if (pass !== confirmPass) {
-      setConfirm(false);
-      alert("Write your password again correctly");
-      e.target.reset();
-    }
+  const onSubmit = (data) => {
+    console.log(data);
+   
 
-    if (pass === confirmPass) {
-      createUser(email, pass).then((data) => {
-        console.log(data);
-        if (data?.user?.email) {
+    if (data.password === data.confirmPassword) {
+      createUser(data.email, data.password).then((result) => {
+        console.log(result);
+        if (result?.user?.email) {
           const userInfo = {
-            email: data?.user?.email,
-            name: name
+            email: data?.email,
+            name:  data?.name
           };
           fetch(`http://localhost:5000/user`, {
             method: "POST",
@@ -42,7 +34,7 @@ const Register = () => {
               console.log(data);
             });
         }
-        e.target.reset();
+        reset();
         navigate(from);
       });
     }
@@ -56,7 +48,7 @@ const Register = () => {
           </h1>
         </div>
         <div className="card w-72 md:w-96 shadow-2xl bg-base-100">
-          <form onSubmit={handleSignup} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="px-1 text-2xl">Create your account!</h1>
             <div className="form-control">
               <label className="label">
@@ -65,22 +57,27 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="name"
-                name="name"
+                {...register('name',{required:true, maxLength:20})}
                 className="input input-bordered"
-                required
+                
               />
+                    {errors.name?.type === 'required' && <p className="my-1 text-red-600" role="alert">Name is required</p>}
+                    {errors.name?.type === 'maxLength' && <p className="my-1 text-red-600" role="alert">Write name within 20 character</p>}
+
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                name="email"
-                type="email"
+              
+                type="text"
                 placeholder="email"
                 className="input input-bordered"
-                required
+                {...register('email',{required:true,pattern:/[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]/i})}
               />
+              {errors.email?.type === 'required' && <p className="my-1 text-red-600" role="alert">Email is required</p>}
+              {errors.email?.type === 'pattern' && <p className="my-1 text-red-600" role="alert">Please enter a valid email</p>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -88,11 +85,13 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                name="password"
-                placeholder="password"
+                
+                placeholder="password (min 6 character)"
                 className="input input-bordered"
-                required
+                {...register('password',{required:true, minLength:6})}
               />
+              {errors.password?.type === 'required' && <p className="my-1 text-red-600" role="alert">password is required</p>}
+              {errors.password?.type === 'minLength' && <p className="my-1 text-red-600" role="alert">password must be minimum 6 character</p>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -100,11 +99,15 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                name="confirmPassword"
+                
                 placeholder="confirm your password"
                 className="input input-bordered"
-                required
+                {...register('confirmPassword',{required:true})}
               />
+              {errors.confirmPassword?.type === 'required' && <p className="my-1 text-red-600" role="alert">Confirming password required</p>}
+              {
+                errors.confirmPassword!==errors.password && <p className="my-1 text-red-600" role="alert">Password didn't match</p>
+              }
             </div>
 
             <button className="btn mt-3  text-white bg-orange-600 hover:bg-orange-800">
@@ -112,9 +115,9 @@ const Register = () => {
             </button>
             <Link to="/login" className="mx-auto mt-5">
               <p className=" text-sm font-semibold">
-                Already on Gym Store? Sign in!
+                Already on Gym Store? Sign in! 
               </p>
-            </Link>
+            </Link> 
           </form>
         </div>
       </div>
