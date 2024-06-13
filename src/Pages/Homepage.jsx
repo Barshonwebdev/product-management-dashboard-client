@@ -1,7 +1,7 @@
 
 const Homepage = () => {
     return (
-        <div className="mx-5">
+        <div className="mx-5 min-h-screen">
             Homepage
         </div>
     );
