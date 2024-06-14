@@ -53,7 +53,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
           <img src={photo_url}  className="rounded-lg" />
         </figure>
         <div className=" items-center p-5 ">
-          <p className=" title-font text-xl">Seller: {seller_name}</p>
+          <p className=" title-font text-xl"><span className="font-semibold">Seller: </span>{seller_name}</p>
           <p className=" title-font "><IoMdMail className="inline"></IoMdMail> : {seller_email}</p>
           <hr className="mb-5 mt-3" />
           <h2 className="card-title title-font text-2xl">{name}</h2>
