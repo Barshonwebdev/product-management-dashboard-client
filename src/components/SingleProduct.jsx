@@ -38,7 +38,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
           .then((data) => {
             Swal.fire({
               title: "Deleted!",
-              text: "Coffeepost has been deleted.",
+              text: "Product has been deleted.",
               icon: "success",
             });
             onDelete(_id);
