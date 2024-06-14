@@ -1,14 +1,16 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 const Drawer = () => {
   return (
-    <div className="drawer">
+    <div className="drawer min-h-screen">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Page content here */}
         <label htmlFor="my-drawer" className="btn flex justify-center mx-20 md:mx-64 mt-2 bg-orange-700 text-white drawer-button">
           Open drawer
         </label>
+        <Outlet></Outlet>
       </div>
       <div className="drawer-side">
         <label
