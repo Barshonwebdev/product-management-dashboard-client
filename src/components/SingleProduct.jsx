@@ -65,9 +65,12 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
            <div className="flex justify-between mt-5">
            <Link to={`/editproduct/${_id}`}><button className="btn bg-white text-orange-600 font-bold">Edit</button></Link>
            <button onClick={handleDelete} className="btn bg-white text-red-700 font-bold">Delete</button>
-         </div> : <div className=" justify-between mt-5 hidden">
+         </div> : <div>
+         <div className=" justify-between mt-5 hidden">
            <button className="btn bg-white text-amber-900 font-bold">Edit</button>
            <button className="btn bg-white text-amber-900 font-bold">Delete</button>
+         </div>
+         <Link to={`/buyproduct/${_id}`}><button className="btn bg-orange-600 text-white">Buy</button></Link>
          </div>
          }
         </div>
