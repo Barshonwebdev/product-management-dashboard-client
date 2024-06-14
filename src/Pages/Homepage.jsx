@@ -3,6 +3,7 @@ import SingleProduct from "../components/SingleProduct";
 
 const Homepage = () => {
     const [allproducts,setAllProducts]=useState([]);
+    
     useEffect(()=>{
         fetch(`http://localhost:5000/products`)
         .then(res=>res.json())

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoMdMail } from "react-icons/io";
 
 const SingleProduct = ({ isOwn,product,onDelete }) => {
   const token=localStorage.getItem('token');
+ 
 
+// 
   const {
     _id,
     name,
@@ -70,7 +72,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
            <button className="btn bg-white text-amber-900 font-bold">Edit</button>
            <button className="btn bg-white text-amber-900 font-bold">Delete</button>
          </div>
-         <Link to={`/buyproduct/${_id}`}><button className="btn bg-orange-600 text-white">Buy</button></Link>
+         {<Link  to={`/buyproduct/${_id}`}><button className="btn bg-orange-600 text-white">Buy</button></Link>}
          </div>
          }
         </div>
