@@ -15,7 +15,7 @@ const Homepage = () => {
             <p className="my-5 text-3xl text-orange-700 text-center">Gym Store Products</p>
             <div className="my-4 grid grid-cols-1 lg:grid-cols-3 mx-3 gap-5">
                 {
-                    allproducts.map(product=><SingleProduct key={product.id} product={product}></SingleProduct>)
+                    allproducts.map(product=><SingleProduct isOwn={false} key={product.id} product={product}></SingleProduct>)
                 }
             </div>
         </div>

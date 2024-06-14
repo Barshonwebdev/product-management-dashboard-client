@@ -11,6 +11,11 @@ import Register from './Pages/Register';
 import Dashboard from './Layouts/Dashboard';
 import AuthProvider from './provider/AuthProvider';
 import Homepage from './Pages/Homepage';
+import MyProducts from './Pages/MyProducts';
+import AddProduct from './Pages/AddProduct';
+import BuyProduct from './Pages/BuyProduct';
+import EditProduct from './Pages/EditProduct';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +25,22 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Homepage/>
+      },
+      {
+        path:'/myproducts',
+        element:<PrivateRoute><MyProducts/></PrivateRoute>
+      },
+      {
+        path:'/addproduct',
+        element:<PrivateRoute><AddProduct/></PrivateRoute>
+      },
+      {
+        path:'/buyproduct',
+        element:<BuyProduct/>
+      },
+      {
+        path:'/editproduct',
+        element:<EditProduct/>
       }
     ]
   },
