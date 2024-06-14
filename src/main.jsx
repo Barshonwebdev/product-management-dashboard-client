@@ -37,12 +37,12 @@ const router = createBrowserRouter([
       {
         path:'/buyproduct/:id',
         element:<PrivateRoute><BuyProduct/></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/buyproduct/${params.id}`)
+        loader:({params})=>fetch(`https://product-management-dashbaord-server.vercel.app/buyproduct/${params.id}`)
       },
       {
         path:'/editproduct/:id',
         element:<PrivateRoute><EditProduct/></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/products/edit/${params.id}`)
+        loader:({params})=>fetch(`https://product-management-dashbaord-server.vercel.app/products/edit/${params.id}`)
       }
     ]
   },

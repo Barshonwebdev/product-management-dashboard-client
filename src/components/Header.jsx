@@ -11,7 +11,7 @@ const Header = () => {
     }
     const [loggedinUser,setLoggedInUser]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://product-management-dashbaord-server.vercel.app/user/${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setLoggedInUser(data);

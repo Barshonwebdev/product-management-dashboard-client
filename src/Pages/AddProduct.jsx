@@ -7,7 +7,7 @@ const AddProduct = () => {
     const token = localStorage.getItem("token");
     const [thisUser, setThisUser] = useState({});
     useEffect(() => {
-      fetch(`http://localhost:5000/user/${user?.email}`)
+      fetch(`https://product-management-dashbaord-server.vercel.app/user/${user?.email}`)
         .then((res) => res.json())
         .then((data) => setThisUser(data));
     }, [user?.email]);
@@ -41,7 +41,7 @@ const AddProduct = () => {
           confirmButtonText: "Yes, Add!",
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch("http://localhost:5000/productadd", {
+            fetch("https://product-management-dashbaord-server.vercel.app/productadd", {
               method: "POST",
               headers: {
                 "Content-type": "application/json",

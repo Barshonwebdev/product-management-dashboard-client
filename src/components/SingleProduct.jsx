@@ -29,7 +29,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://product-management-dashbaord-server.vercel.app/products/${_id}`, {
           method: "DELETE",
           headers:{
             'Content-type':'application/json',
@@ -72,7 +72,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
            <button className="btn bg-white text-amber-900 font-bold">Edit</button>
            <button className="btn bg-white text-amber-900 font-bold">Delete</button>
          </div>
-         {<Link  to={`/buyproduct/${_id}`}><button className="btn bg-orange-600 text-white">Buy</button></Link>}
+         <Link  to={`/buyproduct/${_id}`}><button className="btn bg-orange-600 text-white">Buy</button></Link>
          </div>
          }
         </div>

@@ -19,7 +19,7 @@ const Editpost = () => {
   const token = localStorage.getItem("token");
   const [thisUser, setThisUser] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://product-management-dashbaord-server.vercel.app/user/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setThisUser(data));
   }, [user?.email]);
@@ -52,7 +52,7 @@ const Editpost = () => {
       confirmButtonText: "Yes, Edit!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/editproduct/${productData._id}`, {
+        fetch(`https://product-management-dashbaord-server.vercel.app/editproduct/${productData._id}`, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",

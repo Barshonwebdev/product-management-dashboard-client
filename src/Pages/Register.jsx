@@ -21,7 +21,7 @@ const Register = () => {
             email: data?.email,
             name:  data?.name
           };
-          fetch(`http://localhost:5000/user`, {
+          fetch(`https://product-management-dashbaord-server.vercel.app/user`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",
