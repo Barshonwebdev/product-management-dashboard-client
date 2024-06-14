@@ -27,7 +27,7 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://caffeholic-server.vercel.app/postsown/${_id}`, {
+        fetch(`http://localhost:5000/products/${_id}`, {
           method: "DELETE",
           headers:{
             'Content-type':'application/json',
@@ -63,8 +63,8 @@ const SingleProduct = ({ isOwn,product,onDelete }) => {
           <p className="my-2">Stock: <span className="text-red-600 font-semibold">{stock}</span> Pieces</p>
          { isOwn?
            <div className="flex justify-between mt-5">
-           <Link to={`/dashboardlayout/editpost/${_id}`}><button className="btn bg-white text-amber-900 font-bold">Edit</button></Link>
-           <button onClick={handleDelete} className="btn bg-white text-amber-900 font-bold">Delete</button>
+           <Link to={`/editproduct/${_id}`}><button className="btn bg-white text-orange-600 font-bold">Edit</button></Link>
+           <button onClick={handleDelete} className="btn bg-white text-red-700 font-bold">Delete</button>
          </div> : <div className=" justify-between mt-5 hidden">
            <button className="btn bg-white text-amber-900 font-bold">Edit</button>
            <button className="btn bg-white text-amber-900 font-bold">Delete</button>

@@ -5,6 +5,7 @@ import SingleProduct from '../components/SingleProduct';
 const MyProducts = () => {
     const {user}=useAuth();
     const [myproducts,setMyProducts]=useState([]);
+    
     useEffect(()=>{
         fetch(`http://localhost:5000/products/${user?.email}`)
         .then(res=>res.json())
@@ -12,12 +13,15 @@ const MyProducts = () => {
             console.log(data);
         })
     },[])
+    const handleDeleteInstant=(id)=>{
+        setMyProducts(myproducts.filter((post)=>post._id!==id));
+      }
     return (
         <div className="mx-5 min-h-screen">
             <p className="my-5 text-3xl text-orange-700 text-center">Your Products</p>
             <div className="my-4 grid grid-cols-1 lg:grid-cols-3 mx-3 gap-5">
                 {
-                    myproducts.map(product=><SingleProduct isOwn={false} key={product.id} product={product}></SingleProduct>)
+                    myproducts.map(product=><SingleProduct onDelete={handleDeleteInstant} isOwn={true} key={product.id} product={product}></SingleProduct>)
                 }
             </div>
         </div>
